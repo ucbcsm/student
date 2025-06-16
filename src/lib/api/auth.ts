@@ -2,7 +2,7 @@
 import { authApi } from "@/lib/fetcher";
 import { User } from "@/types";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { redirect, unauthorized } from "next/navigation";
 
 /**
  * Represents a user session, which may include authentication tokens,
@@ -60,6 +60,12 @@ export const getServerSession = async (): Promise<Session> => {
 
     if (!user) {
       return null;
+    }
+
+    if (user.is_student === false) {
+      cookieStore.delete("accessToken");
+      cookieStore.delete("refreshToken");
+      unauthorized();
     }
 
     return {
