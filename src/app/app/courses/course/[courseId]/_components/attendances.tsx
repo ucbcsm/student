@@ -8,6 +8,7 @@ import {
   Space,
   Statistic,
   Tag,
+  theme,
   Typography,
 } from "antd";
 import {
@@ -28,15 +29,18 @@ type StudentCourseAttendancesProps = {
   periodEnrollment?: PeriodEnrollment;
 };
 
-export const StudentCourseAttendances:FC<StudentCourseAttendancesProps> = ({
+export const StudentCourseAttendances: FC<StudentCourseAttendancesProps> = ({
   taughtCourse,
   periodEnrollment,
 }) => {
+  const {
+    token: { colorTextDisabled},
+  } = theme.useToken();
   const { data, isPending, isError } = useQuery({
     queryKey: ["attendances", `${taughtCourse?.id}`, `${periodEnrollment?.id}`],
     queryFn: ({ queryKey }) =>
       getStudentCourseAttendances(Number(queryKey[1]), Number(queryKey[2])),
-    enabled:!!taughtCourse?.id && !!periodEnrollment?.id
+    enabled: !!taughtCourse?.id && !!periodEnrollment?.id,
   });
 
   const getPresentsCount = () => {
@@ -63,14 +67,14 @@ export const StudentCourseAttendances:FC<StudentCourseAttendancesProps> = ({
 
   return (
     <>
-      <Card variant="borderless" style={{ boxShadow: "none" }}>
-        <Typography.Title level={5}>Mes présences au cours</Typography.Title>
+      <Typography.Title level={5}>Mes présences au cours </Typography.Title>
+      <Card variant="borderless">
         <div className=" ">
           <Statistic
+            loading={isPending}
             title={
               <>
-                Taux de présence ({getPresentsCount()} / {data?.length || 0}{" "}
-                séances)
+                Assiduité: {getPresentsPercent()}% ( {getPresentsCount()} présences sur {data?.length || 0} séances)
               </>
             }
             valueRender={() => (
@@ -83,12 +87,15 @@ export const StudentCourseAttendances:FC<StudentCourseAttendancesProps> = ({
                     ? "active"
                     : "exception"
                 }
+                showInfo
               />
             )}
           />
         </div>
       </Card>
+
       <List
+        loading={isPending}
         header={
           <Flex justify="space-between">
             <Typography.Text strong>Date</Typography.Text>
@@ -124,7 +131,7 @@ export const StudentCourseAttendances:FC<StudentCourseAttendancesProps> = ({
             <List.Item.Meta
               title={
                 <Space size={2}>
-                  <ClockCircleOutlined />{" "}
+                  <ClockCircleOutlined style={{ color: colorTextDisabled }} />{" "}
                   {dayjs(item.date).format("DD/MM/YYYY")}
                 </Space>
               }
@@ -144,10 +151,10 @@ export const StudentCourseAttendances:FC<StudentCourseAttendancesProps> = ({
             <Typography.Text strong>Total</Typography.Text>
 
             <Typography.Text>
-              <Tag color="green" bordered={false}>
+              <Tag color="green" bordered={false} style={{fontWeight:"bold"}}>
                 {getPresentsCount()} Présent(s)
               </Tag>
-              <Tag color="red" bordered={false}>
+              <Tag color="red" bordered={false} style={{marginRight:0, fontWeight:"bold"}}>
                 {getAbsentsCount()} Absent(s)
               </Tag>
             </Typography.Text>
