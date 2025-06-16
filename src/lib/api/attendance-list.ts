@@ -102,11 +102,11 @@ export const getAttendanceItemsFromCourseEnrollments = (
 };
 
 export async function getStudentCourseAttendances(
-  courseId: number,
-  studentId: number
+  courseId: number, //TaughtCourseId
+  studentId: number //PeriodEnrollmentId
 ) {
   const res = await api.get(
-    `/student/attendance-by-course/?taught_course__id=${courseId}&period_enrollment__id=${studentId}`
+    `/student/attendance-by-course/?course__id=${courseId}&student__id=${studentId}`
   );
   return res.data as AttendanceList[];
 }
