@@ -63,8 +63,8 @@ export const getServerSession = async (): Promise<Session> => {
     }
 
     if (user.is_student === false) {
-      cookieStore.delete("accessToken");
-      cookieStore.delete("refreshToken");
+      // cookieStore.delete("accessToken");
+      // cookieStore.delete("refreshToken");
       unauthorized();
     }
 
