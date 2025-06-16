@@ -68,8 +68,12 @@ export const getServerSession = async (): Promise<Session> => {
       user,
       error: null,
     };
-  } catch (error: any) {
-    throw new Error("Failed to get server session");
+  } catch (error) {
+    const cookieStore = await cookies();
+    cookieStore.delete("accessToken");
+    cookieStore.delete("refreshToken");
+    return null;
+    // throw new Error("Failed to get server session");
   }
 };
 
@@ -131,7 +135,6 @@ export const login = async (credentials: {
     }
 
     throw new Error("An error occurred during login. Please try again.");
-  
   }
 };
 
@@ -206,8 +209,8 @@ export const logout = async () => {
  */
 export const resetPassword = async (email: string) => {
   try {
-    const res= await authApi.post("/users/reset_password/", { email });
-    console.log("Res: ",res)
+    const res = await authApi.post("/users/reset_password/", { email });
+    console.log("Res: ", res);
   } catch (error: any) {
     console.error("Error during password reset:", error);
     // console.error("Error during password reset:", error.message || error);
