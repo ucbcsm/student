@@ -1,6 +1,5 @@
 import { TeachingUnit } from "@/types";
 import api from "../fetcher";
-import { Coda } from "next/font/google";
 
 export async function getTeachingUnits() {
   const res = await api.get(`/faculty/teaching-unit/`);
