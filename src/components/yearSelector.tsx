@@ -113,7 +113,7 @@ export function YearSelector() {
         }}
       >
         {checkYidInYears() ? (
-          <div style={{ width: 440, margin: "auto" }}>
+          <div style={{ maxWidth: 440, margin: "auto" }}>
             <Card
               title={
                 <Typography.Title level={2} style={{ marginBottom: 0 }}>
