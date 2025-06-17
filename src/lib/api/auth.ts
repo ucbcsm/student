@@ -133,8 +133,7 @@ export const login = async (credentials: {
       if (user.is_student) {
         Cookies.set("accessToken", access);
         Cookies.set("refreshToken", refresh);
-      }
-      {
+      }else{
         unauthorized();
       }
     }
