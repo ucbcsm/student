@@ -24,7 +24,7 @@ export default function NotFound() {
         style={{
           display: "flex",
           // background: colorBgContainer,
-          padding: " 24px 0",
+          // padding: " 24px 0",
         }}
       >
         <Typography.Text type="secondary">
