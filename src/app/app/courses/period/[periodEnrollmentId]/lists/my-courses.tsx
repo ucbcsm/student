@@ -6,11 +6,8 @@ import { FC, useState } from "react";
 import { UnregisterStudentCourseForm } from "../forms/unregisterToCourse";
 import { Button, Dropdown, Input, List, Space, Tag, Typography } from "antd";
 import {
-  DownOutlined,
   EyeOutlined,
-  FilePdfOutlined,
   MoreOutlined,
-  PrinterOutlined,
   ReadOutlined,
 } from "@ant-design/icons";
 import {
@@ -37,21 +34,29 @@ const CourseListItem: FC<CourseListItemProps> = ({ item }) => {
         extra={
           <Space>
             {/* {item?.status === "validated" && ( */}
-              <Button
-                type="link"
-                style={{ boxShadow: "none" }}
-                onClick={() =>
-                  router.push(`/app/courses/course/${item.course.id}`)
-                }
-                title="Voir le cours"
-                icon={<EyeOutlined/>}
-              />
-               
+            <Button
+              type="link"
+              style={{ boxShadow: "none" }}
+              onClick={() =>
+                router.push(`/app/courses/course/${item.course.id}`)
+              }
+              title="Voir le cours"
+              icon={<EyeOutlined />}
+            />
+
             {/* )} */}
             {item.status !== "validated" && (
               <Dropdown
                 menu={{
                   items: [
+                    {
+                      key: "attendances",
+                      label: "Présences",
+                    },
+                    {
+                      key: "assessments",
+                      label: "Notes",
+                    },
                     {
                       key: "unregister",
                       label: " Se désinscrire",
@@ -61,6 +66,10 @@ const CourseListItem: FC<CourseListItemProps> = ({ item }) => {
                   onClick: ({ key }) => {
                     if (key === "unregister") {
                       setOpenUnregister(true);
+                    } else {
+                      router.push(
+                        `/app/courses/course/${item.course.id}/?tab=${key}`
+                      );
                     }
                   },
                 }}
@@ -77,9 +86,11 @@ const CourseListItem: FC<CourseListItemProps> = ({ item }) => {
       >
         <List.Item.Meta
           title={
-            <Space  onClick={() =>
-                  router.push(`/app/courses/course/${item.course.id}`)
-                }>
+            <Space
+              onClick={() =>
+                router.push(`/app/courses/course/${item.course.id}`)
+              }
+            >
               <ReadOutlined />
               {item.course.available_course.name}{" "}
               <span>({item.course.available_course.code})</span>

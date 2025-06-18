@@ -63,18 +63,14 @@ const CourseListItem: FC<CourseListItemProps> = ({
         extra={
           <Space>
             {/* {checkCourseInEnrollments?.status === "validated" && ( */}
-              <Button
-                type="link"
-                style={{ boxShadow: "none" }}
-                onClick={() =>
-                  router.push(
-                    `/app/courses/course/${item.id}`
-                  )
-                }
-                icon={<EyeOutlined/>}
-                title="Voir le cours"
-              />
-                {/* Voir le cours
+            <Button
+              type="link"
+              style={{ boxShadow: "none" }}
+              onClick={() => router.push(`/app/courses/course/${item.id}`)}
+              icon={<EyeOutlined />}
+              title="Voir le cours"
+            />
+            {/* Voir le cours
               </Button> */}
             {/* )} */}
             {!checkCourseInEnrollments
@@ -117,11 +113,9 @@ const CourseListItem: FC<CourseListItemProps> = ({
       >
         <List.Item.Meta
           title={
-            <Space onClick={() =>
-                  router.push(
-                    `/app/courses/course/${item.id}`
-                  )
-                }>
+            <Space
+              onClick={() => router.push(`/app/courses/course/${item.id}`)}
+            >
               <ReadOutlined />
               {item.available_course.name}{" "}
               <span>({item.available_course.code})</span>
