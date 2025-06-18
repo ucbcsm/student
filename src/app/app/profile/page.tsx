@@ -219,7 +219,7 @@ export default function Page() {
                   ),
                 },
                 {
-                  key: "telephone1",
+                  key: "phone_number_1",
                   label: "Téléphone 1",
                   children: (
                     <a
@@ -230,7 +230,7 @@ export default function Page() {
                   ),
                 },
                 {
-                  key: "telephone2",
+                  key: "phone_number_2",
                   label: "Téléphone 2",
                   children: (
                     <a

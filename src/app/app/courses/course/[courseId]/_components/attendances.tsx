@@ -105,6 +105,7 @@ export const StudentCourseAttendances: FC<StudentCourseAttendancesProps> = ({
         dataSource={data}
         renderItem={(item) => (
           <List.Item
+          key={item.id}
             extra={
               <Space>
                 {item.student_attendance_status[0].status === "present" ? (

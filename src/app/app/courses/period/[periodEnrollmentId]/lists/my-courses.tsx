@@ -33,7 +33,6 @@ const CourseListItem: FC<CourseListItemProps> = ({ item }) => {
       <List.Item
         extra={
           <Space>
-            {/* {item?.status === "validated" && ( */}
             <Button
               type="link"
               style={{ boxShadow: "none" }}
