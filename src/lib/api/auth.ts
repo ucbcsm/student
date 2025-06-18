@@ -2,7 +2,7 @@
 import { authApi } from "@/lib/fetcher";
 import { User } from "@/types";
 import { cookies } from "next/headers";
-import { redirect, unauthorized } from "next/navigation";
+import { redirect } from "next/navigation";
 
 /**
  * Represents a user session, which may include authentication tokens,
