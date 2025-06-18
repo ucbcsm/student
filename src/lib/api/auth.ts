@@ -124,18 +124,18 @@ export const login = async (credentials: {
       console.error("Missing tokens in response:", res.data);
       throw new Error("Invalid login response");
     } else {
-      const userResponse = await authApi.get("/users/me/", {
-        headers: {
-          Authorization: `Bearer ${access}`,
-        },
-      });
-      const user = userResponse.data;
-      if (user.is_student) {
+      // const userResponse = await authApi.get("/users/me/", {
+      //   headers: {
+      //     Authorization: `Bearer ${access}`,
+      //   },
+      // });
+      // const user = userResponse.data;
+      // if (user.is_student) {
         Cookies.set("accessToken", access);
         Cookies.set("refreshToken", refresh);
-      }else{
-        unauthorized();
-      }
+      // }else{
+      //   unauthorized();
+      // }
     }
   } catch (error: any) {
     console.error("Error during login:", error.message || error);
