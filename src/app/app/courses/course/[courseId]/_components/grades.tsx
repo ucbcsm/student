@@ -9,18 +9,12 @@ import {
 
 const gradesData = {
   grades: [
+    
     {
-      type: "TD/TP",
-      label: "TD & TP",
-      score: 3.5,
-      max: 5,
-      date: "2025-03-12",
-    },
-    {
-      type: "quiz",
-      label: "Quiz",
-      score: 2.5,
-      max: 5,
+      type: "CC",
+      label: "Contrôle continu (CC)",
+      score: 6.5,
+      max: 10,
       date: "2025-04-07",
     },
     {
