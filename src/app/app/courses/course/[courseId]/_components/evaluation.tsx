@@ -9,7 +9,6 @@ export const StudentCourseEvaluations = () => {
   const [comment, setComment] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
-  // Simulate submit
   const handleSubmit = () => {
     setLoading(true);
     setTimeout(() => {
@@ -20,6 +19,7 @@ export const StudentCourseEvaluations = () => {
       message.success("Votre évaluation a bien été envoyée. Merci !");
     }, 1200);
   };
+
 
   return (
     <Result

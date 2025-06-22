@@ -131,8 +131,8 @@ export const login = async (credentials: {
       // });
       // const user = userResponse.data;
       // if (user.is_student) {
-        Cookies.set("accessToken", access);
-        Cookies.set("refreshToken", refresh);
+      Cookies.set("accessToken", access);
+      Cookies.set("refreshToken", refresh);
       // }else{
       //   unauthorized();
       // }
