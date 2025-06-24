@@ -121,21 +121,20 @@ export const login = async (credentials: {
     };
 
     if (!access || !refresh) {
-      console.error("Missing tokens in response:", res.data);
       throw new Error("Invalid login response");
     } else {
-      // const userResponse = await authApi.get("/users/me/", {
-      //   headers: {
-      //     Authorization: `Bearer ${access}`,
-      //   },
-      // });
-      // const user = userResponse.data;
-      // if (user.is_student) {
-      Cookies.set("accessToken", access);
-      Cookies.set("refreshToken", refresh);
-      // }else{
-      //   unauthorized();
-      // }
+      const userResponse = await authApi.get("/users/me/", {
+        headers: {
+          Authorization: `Bearer ${access}`,
+        },
+      });
+      const user = userResponse.data;
+      if (user.is_student && user.is_active) {
+        Cookies.set("accessToken", access);
+        Cookies.set("refreshToken", refresh);
+      } else {
+        throw new Error("");
+      }
     }
   } catch (error: any) {
     console.error("Error during login:", error.message || error);

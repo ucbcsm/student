@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import ClientProvider from "@/components/clientProvider";
 import { getServerSession } from "@/lib/api/auth";
+import { Suspense } from "react";
 
 const inter = Inter({
   subsets: ["latin"],
