@@ -182,11 +182,13 @@ export default function Page() {
 
   const checkPeriodInEnrollments = (periodId: number) => {
     const periodEnrollement = periodEnrollments?.find(
-      (p) => p.period.id === periodId
+      (p) => p.period?.id === periodId
     );
 
     return periodEnrollement;
   };
+
+  console.log("Mes inscriptions",periodEnrollments)
 
   const getOpenedPeriods = () => {
     const openedPeriods = periods?.filter(
