@@ -20,6 +20,11 @@ export async function updateStudentInfo({
       matricule: string;
       avatar: string | null;
       pending_avatar: string | null;
+      is_active:boolean,
+      is_staff:boolean,
+      is_student:boolean,
+      is_superuser:boolean,
+      is_permanent_teacher:boolean,
     };
   };
 }) {

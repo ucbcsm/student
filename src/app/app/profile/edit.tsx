@@ -57,7 +57,6 @@ export const EditStudentProfileForm: FC<EditStudentProfileFormProps> = ({
   const { yid } = useYid();
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
-  const [editMatricule, setEditMatricule] = useState<boolean>(false);
   const queryClient = useQueryClient();
   const { mutateAsync, isPending } = useMutation({
     mutationFn: updateStudentInfo,
@@ -81,6 +80,11 @@ export const EditStudentProfileForm: FC<EditStudentProfileFormProps> = ({
               avatar: data?.user.avatar,
               matricule: values.matricule,
               pending_avatar: data?.user.pending_avatar,
+              is_active:data.user.is_active,
+              is_staff:data.user.is_staff,
+              is_student:data.user.is_student,
+              is_superuser:data.user.is_superuser,
+              is_permanent_teacher:data.user.is_permanent_teacher
             },
             application_documents: formatApplicationDocumentsForEdition(
               data?.common_enrollment_infos.application_documents
@@ -104,7 +108,6 @@ export const EditStudentProfileForm: FC<EditStudentProfileFormProps> = ({
               queryKey: ["enrollment", `${data.id}`],
             });
             messageApi.success("Profil étudiant mise à jour avec succès.");
-            setEditMatricule(false);
             setOpen(false);
           },
           onError: () => {

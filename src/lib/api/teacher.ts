@@ -1,7 +1,6 @@
 import { Teacher } from "@/types";
 import api from "../fetcher";
 import { updateUser } from "./user";
-import { number } from "zod";
 
 export async function getTeachers() {
   const res = await api.get(`/faculty/teachers/`);

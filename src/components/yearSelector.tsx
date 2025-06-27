@@ -1,8 +1,6 @@
 "use client";
 import { useYid } from "@/hooks/use-yid";
-import {
-  getYearEnrollments,
-} from "@/lib/api";
+import { getYearEnrollments } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import {
   Button,
@@ -17,7 +15,6 @@ import {
   Space,
   Tag,
   Typography,
-  
 } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { Palette } from "./palette";
@@ -52,13 +49,15 @@ export function YearSelector() {
     return typeof exists === "boolean" ? !exists : false;
   };
 
-  const getEnrollmentsAsOptions=()=>{
-    const options=yearEnrollments?.map(enrollment=>({
-      value:enrollment.id,
-      label:`${enrollment.academic_year.name} (${enrollment.class_year.acronym})`
-    }))
-    return options
-  }
+  const getEnrollmentsAsOptions = () => {
+    const options = yearEnrollments?.map((enrollment) => ({
+      value: enrollment.id,
+      label: `${enrollment.academic_year.name} (${
+        enrollment.class_year?.acronym || ""
+      })`,
+    }));
+    return options;
+  };
 
   useEffect(() => {
     timerRef.current = setTimeout(() => {
@@ -152,7 +151,9 @@ export function YearSelector() {
                             {enrollment.academic_year.name}
                           </Typography.Title>
                           <Tag
-                            color={enrollment.user.is_active?"success":"error"}
+                            color={
+                              enrollment.user.is_active ? "success" : "error"
+                            }
                             style={{ border: 0 }}
                           >
                             {enrollment.class_year.acronym}
@@ -204,7 +205,7 @@ export function YearSelector() {
               showInfo={false}
             />
             <Typography.Title type="secondary" level={3}>
-             Student Access Portal
+              Student Access Portal
             </Typography.Title>
             <Typography.Text type="secondary">
               © {new Date().getFullYear()} CI-UCBC. Tous droits réservés.
