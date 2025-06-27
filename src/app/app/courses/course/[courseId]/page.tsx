@@ -57,7 +57,7 @@ export default function Page() {
 
   const checkPeriodEnrollmentInEnrollments = () => {
     const periodEnrollement = periodEnrollments?.find(
-      (p) => p.period.id === course?.period?.id
+      (p) => p.period?.id === course?.period?.id
     );
 
     return periodEnrollement;
