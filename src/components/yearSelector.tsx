@@ -53,9 +53,9 @@ export function YearSelector() {
   const getEnrollmentsAsOptions = () => {
     const options = yearEnrollments?.map((enrollment) => ({
       value: enrollment.id,
-      label: `${enrollment.academic_year.name} (${
-        enrollment.class_year?.acronym || ""
-      })`,
+      label: `${enrollment.class_year?.acronym || ""} ${
+        enrollment.academic_year.name
+      }`,
     }));
     return options;
   };
