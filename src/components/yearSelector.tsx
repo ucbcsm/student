@@ -1,4 +1,5 @@
 "use client";
+
 import { useYid } from "@/hooks/use-yid";
 import { getYearEnrollments } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";

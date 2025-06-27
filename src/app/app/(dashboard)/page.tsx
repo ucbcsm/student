@@ -127,7 +127,7 @@ export default function Page() {
                     <Statistic
                       loading={isPending}
                       title="Promotion actuelle"
-                      value={enrollment?.class_year.acronym}
+                      value={enrollment?.class_year?.acronym||""}
                     />
                   </Card>
                 </Col>
@@ -612,7 +612,7 @@ export default function Page() {
                     {
                       key: "class",
                       label: "Promotion",
-                      children: enrollment?.class_year.acronym,
+                      children: enrollment?.class_year?.acronym||"",
                     },
                   ]}
                 />
