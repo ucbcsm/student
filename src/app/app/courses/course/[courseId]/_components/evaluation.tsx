@@ -24,7 +24,7 @@ export const StudentCourseEvaluations = () => {
   return (
     <Result
       icon={<FormOutlined />}
-      title={"Évaluer ce cours"}
+      title={"Évaluation"}
       subTitle={
         <Typography.Paragraph>
           Vous avez la possibilité d&apos;évaluer ce cours et de donner votre
